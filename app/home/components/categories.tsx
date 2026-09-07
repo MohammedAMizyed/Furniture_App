@@ -14,7 +14,7 @@ export default async function Categories() {
       <div className="my-20 flex justify-center items-center flex-col ">
         <h1 className="text-[32px] font-bold">Browse The Range</h1>
         <h2 className="text-[20px]  font-normal text-[#666666]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Lorem ipsum dolor sit amet , consectetur adipiscing elit.
         </h2>
       </div>
       <div className="flex justify-center items-center gap-5">

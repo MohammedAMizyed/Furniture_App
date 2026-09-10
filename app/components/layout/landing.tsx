@@ -10,7 +10,7 @@ export default function LandingPages() {
   const location = usePathname()
 
   return (
-    <div className="overflow-hidden relative w-full max-h-79 h-full">
+    <div className="select-none overflow-hidden relative w-full max-h-79 h-full">
       <Image className="h-full w-full object-cover" src={bgImg} alt="" />
       <div className=" absolute top-1/2 left-1/2 -translate-1/2">
         <Image className=" m-auto" src={logo} alt="" />

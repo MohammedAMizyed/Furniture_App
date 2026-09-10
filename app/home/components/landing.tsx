@@ -4,7 +4,7 @@ import landingBg from "../../../public/landingBg.svg"
 export default function LandingHomePage() {
   return (
     <div>
-      <div className="relative h-[calc(100vh-80px)] relative">
+      <div className="relative   h-[calc(100vh-80px)]">
         <Image className="h-full w-full object-cover" src={landingBg} alt="" />
         <div className=" max-w-160 top-[50%] -translate-y-1/2 right-30 max-h-[450px] absolute rounded-xl p-10 bg-[#FFF3E3]">
           <h3 className="text-[16px] font-semibold">New Arrival</h3>

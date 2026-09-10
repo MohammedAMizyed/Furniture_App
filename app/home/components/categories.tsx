@@ -1,14 +1,16 @@
-// "use client"
-// import { useCategories } from "@/hooks/useCategoies"
-import bg from "../../../public/categoryImg.svg"
+import { categoriesServices } from "@/services/categories"
 import Image from "next/image"
-import { categoriesApi } from "@/services/categories"
+import furnitureImg from "../../../public/bedroom.svg"
+import kitchenImg from "../../../public/dining.svg"
+import decorationImg from "../../../public/living.svg"
 export default async function Categories() {
-  //   const { data, isLoading } = useCategories()
-  //   if (isLoading) {
-  //     return <div className="animate-pulse">Loading...</div>
-  //   }
-  const categoriesData = await categoriesApi()
+  const categoriesImages: Record<string, typeof furnitureImg> = {
+    furniture: furnitureImg,
+    "home-decoration": decorationImg,
+    "kitchen-accessories": kitchenImg,
+  }
+  const categoriesData = await categoriesServices.get()
+
   return (
     <div className="container ">
       <div className="my-20 flex justify-center items-center flex-col ">
@@ -27,7 +29,7 @@ export default async function Categories() {
               <div className="max-h-[480px] max-w-[380px] overflow-hidden rounded-xl">
                 <Image
                   className="h-full w-full object-cover"
-                  src={bg}
+                  src={categoriesImages[item.slug]}
                   alt="."
                 />
               </div>

@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import landingBg from "../../../public/landingBg.svg"
+import landingBg from "../../../../public/landingBg.svg"
 export default function LandingHomePage() {
   return (
     <div>

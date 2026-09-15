@@ -1,8 +1,8 @@
 import { categoriesServices } from "@/services/categories"
 import Image from "next/image"
-import furnitureImg from "../../../public/bedroom.svg"
-import kitchenImg from "../../../public/dining.svg"
-import decorationImg from "../../../public/living.svg"
+import furnitureImg from "../../../../public/bedroom.svg"
+import kitchenImg from "../../../../public/dining.svg"
+import decorationImg from "../../../../public/living.svg"
 export default async function Categories() {
   const categoriesImages: Record<string, typeof furnitureImg> = {
     furniture: furnitureImg,

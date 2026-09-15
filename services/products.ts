@@ -5,7 +5,7 @@ import { category_keys } from "@/types/categories"
 export const productsServices = {
   getByCategory: async ({
     category,
-    limit = 10,
+    limit = 30,
   }: {
     category: category_keys
     limit?: number

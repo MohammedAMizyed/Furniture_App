@@ -13,7 +13,7 @@ export default function Footer() {
     { id: 2, title: "Privacy Policies" },
   ]
   return (
-    <div className="container mt-10 px-20 border-t-2 border-[#ddd] pt-5">
+    <div className="container  border-t-2 border-[#ddd] pt-5">
       <div className="border-b-2 border-[#ddd] pb-10 flex justify-between items-start gap-10">
         <div>
           <h1 className="text-[24px] my-3 mb-7 font-bold ">Funiro.</h1>

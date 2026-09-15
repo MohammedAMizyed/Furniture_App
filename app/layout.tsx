@@ -4,8 +4,6 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google"
 import "./globals.css"
 import "@mantine/core/styles.css"
 
-import Header from "./components/layout/header"
-import Footer from "./components/layout/footer"
 import Providers from "./providers"
 
 import { mantineHtmlProps } from "@mantine/core"
@@ -43,11 +41,7 @@ export default function RootLayout({
     >
       <body className={`flex min-h-full flex-col ${poppins.className}`}>
         <Providers>
-          <Header />
-
           <main className="flex-1">{children}</main>
-
-          <Footer />
         </Providers>
       </body>
     </html>

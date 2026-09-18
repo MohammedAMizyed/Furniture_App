@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { CiShare2 } from "react-icons/ci"
 import { GiLoveHowl } from "react-icons/gi"
 
@@ -7,8 +8,9 @@ interface Props {
   title: string
   desc: string
   price: number
+  id: number
 }
-export default function ProductCard({ img, title, desc, price }: Props) {
+export default function ProductCard({ img, title, desc, price, id }: Props) {
   return (
     <div className="group  bg-[#F4F5F7] relative overflow-hidden">
       <div className=" opacity-0 transition-opacity duration-300 group-hover:opacity-100 absolute top-0 left-0 bg-[#3a3a3a7d] h-full w-full">
@@ -17,10 +19,13 @@ export default function ProductCard({ img, title, desc, price }: Props) {
             Add To Cart
           </div>
           <div className="text-white flex justify-center items-center gap-5">
-            <div className="cursor-pointer flex gap-1 items-center justify-center">
-              <CiShare2 />
-              Share
-            </div>
+            <Link href={`/shop/${id}`}>
+              <div className="cursor-pointer flex gap-1 items-center justify-center">
+                <CiShare2 />
+                Link
+              </div>
+            </Link>
+
             <div className="cursor-pointer flex gap-1 items-center justify-center">
               <GiLoveHowl />
               Like

@@ -1,13 +1,14 @@
-import HeroSection from "./components/herosection"
+"use client"
 import ProductDetails from "./components/product-details"
-
-export default function page() {
+import { useProduct } from "@/hooks/useProduct"
+import { useParams } from "next/navigation"
+export default function Page() {
+  const { product } = useParams<{ product: string }>()
+  const { data, isLoading } = useProduct(product)
   return (
     <div className="">
-      <HeroSection name={"mohamed"} />
-      <div className="container">
-        <ProductDetails />
-      </div>
+      <ProductDetails product={data} isLoading={isLoading} />
+      
     </div>
   )
 }

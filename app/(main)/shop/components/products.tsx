@@ -48,6 +48,7 @@ export default function Products({ choice, search }: Props) {
         {products.map((item) => (
           <div key={item.id} className="basis-[23%]">
             <ProductCard
+              id={item.id}
               title={item.title}
               desc={item.category}
               price={item.price}

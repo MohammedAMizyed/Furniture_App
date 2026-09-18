@@ -15,6 +15,7 @@ export default async function OurProducts() {
           return (
             <div key={item.id} className="basis-[23%]">
               <ProductCard
+                id={item.id}
                 title={item.title}
                 desc={item.category}
                 price={item.price}
@@ -24,6 +25,7 @@ export default async function OurProducts() {
           )
         })}
       </div>
+
       <Button
         className="my-10 text-center m-auto flex! justify-center!"
         variant="outline"

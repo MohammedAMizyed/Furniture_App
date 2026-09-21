@@ -1,9 +1,8 @@
 "use client"
+/* eslint-disable @next/next/no-img-element */
 import { Product } from "@/types/product"
-import { useDisclosure } from "@mantine/hooks"
-import { Button, Group, Text, Collapse, Box } from "@mantine/core"
+import { Button, Group, Text, Collapse, Box, Rating } from "@mantine/core"
 import { useState } from "react"
-import Image from "next/image"
 
 type Props = {
   product: Product
@@ -25,6 +24,7 @@ export default function InformationProduct({ product }: Props) {
           <Button
             c={"black"}
             variant="subtle"
+            className="mb-5 hover:bg-[#F9F1E7]!  hover:text-[#616161]! duration-200!"
             onClick={() => {
               toggleSection(1)
             }}
@@ -34,6 +34,7 @@ export default function InformationProduct({ product }: Props) {
           <Button
             c={"black"}
             variant="subtle"
+            className="mb-5 hover:bg-[#F9F1E7]! hover:text-[#616161]! duration-200!"
             onClick={() => {
               toggleSection(2)
             }}
@@ -42,6 +43,7 @@ export default function InformationProduct({ product }: Props) {
           </Button>
           <Button
             c={"black"}
+            className="mb-5 hover:bg-[#F9F1E7]! hover:text-[#616161]! duration-200!"
             variant="subtle"
             onClick={() => {
               toggleSection(3)
@@ -72,9 +74,38 @@ export default function InformationProduct({ product }: Props) {
           transitionDuration={100}
           transitionTimingFunction="linear"
         >
-          <Text>{product.description} </Text>
+          <Text>
+            {product.reviews.map((item, index) => {
+              return (
+                <div key={index}>
+                  <div className="bg-[#F9F1E7] p-5 rounded-2xl m-2">
+                    <div className="mb-2">
+                      <h1 className="text-2xl font-black ">
+                        {item.reviewerName}
+                      </h1>
+                      <h3 className="text-[15px] text-[#b4b0b0]">
+                        {item.reviewerEmail}
+                      </h3>
+                    </div>
+                    <p className="my-2">{item.comment}</p>
+
+                    <div className="flex items-center gap-2">
+                      rated:
+                      <Rating
+                        value={Math.round(Number(product?.rating ?? 0) * 2) / 2}
+                        fractions={2}
+                        readOnly
+                      />
+                    </div>
+                    {/* <p>{item.date}</p> */}
+                  </div>
+                </div>
+              )
+            })}{" "}
+          </Text>
         </Collapse>
       </Box>
+
       <div className="flex justify-center gap-10 items-center p-5">
         <div className=" flex-1/2 rounded-2xl overflow-hidden w-full max-w-[500px] h-full ">
           <img

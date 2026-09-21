@@ -1,24 +1,31 @@
-import { Button } from "@mantine/core"
+"use client"
+import { Button, Rating } from "@mantine/core"
 import Image from "next/image"
 import img from "../../../../../public/categoryImg.svg"
 
 import { Product } from "@/types/product"
 import HeroSection from "./hero-section"
 import InformationProduct from "./Information-product"
+import { useState } from "react"
 type Props = {
   product: Product | undefined
   isLoading: boolean
 }
 export default function ProductDetails({ product, isLoading }: Props) {
   const data = product
-  // if (isLoading) {
-  //   return <div className="animate-pulse text-3xl font-bold">Loading...</div>
-  // }
+  const [quantity, setQuantity] = useState<number>(0)
+
   return (
     <>
-      <HeroSection title={product?.title ?? "unKnown"} />
+      <HeroSection
+        title={
+          product?.title ?? (
+            <div className="animate-pulse text-3xl font-bold">loading...</div>
+          )
+        }
+      />
       <div className="container">
-        <div className="flex justify-center  gap-10 border-b-1 my-2 border-[#9F9F9F] py-10 ">
+        <div className="flex justify-center  gap-20 border-b-1 my-2 border-[#9F9F9F] py-10 ">
           <div className="flex-1/3">
             {isLoading ? (
               <div className="flex justify-center items-center  h-full animate-pulse text-3xl font-bold">
@@ -52,48 +59,92 @@ export default function ProductDetails({ product, isLoading }: Props) {
           </div>
 
           <div className="flex-2/3">
-            <h1 className="text-[42px] font-normal">{data?.title}</h1>
+            <h1 className="text-[42px] font-normal">
+              {isLoading ? (
+                <div className="flex  items-center  h-full animate-pulse text-3xl font-bold">
+                  Loading...
+                </div>
+              ) : (
+                data?.title
+              )}
+            </h1>
             <h4 className="text-[24px] font-medium text-[#9F9F9F]">
               Rs. 250,000.00
             </h4>
             <div className="flex items-center gap-2">
               <div> rated </div> |{" "}
+              <Rating
+                value={Math.round(Number(product?.rating ?? 0) * 2) / 2}
+                fractions={2}
+                readOnly
+              />
+              {/* <Rating
+                defaultValue={Math.round(Number(product?.rating ?? 0) * 2) / 2}
+              /> */}
               <span className="text-[13px] font-normal text-[#9F9F9F]">
                 {data?.reviews.length} Customer Review
               </span>
             </div>
-            <p className="text-[13px] font-normal">{data?.description}</p>
-            <div className="flex flex-col gap-3 ">
-              <h4 className="text-[14px] font-normal text-[#9F9F9F]">Size</h4>
-              <div></div>
-            </div>
-            <div className="flex flex-col gap-3 ">
-              <h4 className="text-[14px] font-normal text-[#9F9F9F]">color</h4>
-              <div></div>
-            </div>
+            <p className="text-[13px] font-normal max-w-[400px] my-3">
+              {data?.description}
+            </p>
+
             <div className="border-b-1! py-3 border-[#9F9F9F] flex justify-start items-center gap-2">
-              <div>quantity</div>
-              <Button>Add To Cart</Button>
+              <div className="flex items-center gap-2">
+                Quantity:
+                <div className="flex item-center  gap-5 ">
+                  <Button
+                    variant="light"
+                    className="bg-[#F9F1E7]! hover:bg-[#f9f1e7d3]!"
+                    onClick={() => {
+                      setQuantity((e) => e + 1)
+                    }}
+                  >
+                    +
+                  </Button>
+                  <div>{quantity}</div>
+                  <Button
+                    variant="light"
+                    className="bg-[#F9F1E7]! hover:bg-[#f9f1e7d3]!"
+                    disabled={quantity <= 0}
+                    onClick={() => {
+                      setQuantity((e) => e - 1)
+                    }}
+                  >
+                    -
+                  </Button>
+                </div>
+              </div>
+
+              <Button variant="light" className="text-[#616161]! bg-[#F9F1E7]!">
+                Add To Cart
+              </Button>
             </div>
-            <div>
-              <div className="flex items-center gap-">
+            <div className="my-3">
+              <div className="flex my-2 items-center gap-">
                 <span className="block w-25">SKU </span> : {data?.sku}
               </div>
-              <div className="flex items-center gap-">
+              <div className="flex my-2 items-center gap-">
                 <span className="block w-25">Category </span> : {data?.category}
               </div>
-              <div className="flex items-center gap-">
+              <div className="flex my-2 items-center gap-">
                 <span className="block w-25">Tags </span> :{" "}
                 {data?.tags.map((item) => item)}
               </div>
-              <div className="flex items-center gap-">
+              <div className="flex my-2 items-center gap-">
                 <span className="block w-25">Share </span> : {"78"}
               </div>
             </div>
           </div>
         </div>
       </div>
-      {product && <InformationProduct product={product} />}
+      {isLoading ? (
+        <div className="flex justify-center my-10 items-center  h-full animate-pulse text-3xl font-bold">
+          Loading...
+        </div>
+      ) : (
+        product && <InformationProduct product={product} />
+      )}
     </>
   )
 }

@@ -1,5 +1,4 @@
 import Image from "next/image"
-
 import logo from "../../../public/Meubel House_Logos-05.svg"
 import profileIcon from "../../../public/profile icon.svg"
 import searchIcon from "../../../public/search.svg"
@@ -38,88 +37,97 @@ export default function Header() {
           </Link>
           <span className="text-[34px] font-bold ">Furniro</span>
         </div>
-        <div className="flex-1/3 flex justify-center items-center gap-18.75">
-          {links.map((link) => {
-            return (
-              <div
-                className="cursor-pointer text-[16px] font-medium"
-                key={link.id}
-              >
-                <Link
-                  href={`/${link.title == "Home" ? "/" : link.title.toLowerCase()}`}
-                >
-                  {link.title}
-                </Link>
-              </div>
-            )
-          })}
-        </div>
 
-        <div className="flex-1/3 flex justify-end items-center gap-18.75">
-          <Popover width={200} position="bottom" withArrow shadow="md">
-            <PopoverTarget>
-              <div
-                className="cursor-pointer text-[16px] font-medium"
-                key={"00"}
-              >
-                <Image src={profileIcon} alt="img" />
-              </div>
-            </PopoverTarget>
-            <PopoverDropdown>
-              <div className="flex flex-col justify-start items-start gap-2">
-                <Link href={`/auth/logIn`}>
-                  <Button
-                    className=" flex!"
-                    color="#B88E2F"
-                    variant="light"
-                    w={"100%"}
+        <div className="hidden md:block flex-2/3">
+          <div className="flex justify-between">
+            <div className="flex-1/2 flex justify-center items-center gap-18.75">
+              {links.map((link) => {
+                return (
+                  <div
+                    className="cursor-pointer text-[16px] font-medium"
+                    key={link.id}
                   >
-                    Log In
-                  </Button>
-                </Link>
-                <Link href={`/auth/register`}>
-                  <Button
-                    color="#B88E2F"
-                    className=" flex!"
-                    variant="outline"
-                    w={"100%"}
-                  >
-                    Register
-                  </Button>
-                </Link>
-              </div>
-            </PopoverDropdown>
-          </Popover>
+                    <Link
+                      href={`/${link.title == "Home" ? "/" : link.title.toLowerCase()}`}
+                    >
+                      {link.title}
+                    </Link>
+                  </div>
+                )
+              })}
+            </div>
 
-          {icons.map((icon) => {
-            return (
-              <div
-                className="cursor-pointer text-[16px] font-medium"
-                key={icon.id}
-              >
-                <>
-                  <Group justify="center">
-                    <HoverCard width={200} shadow="md">
-                      <HoverCardTarget>
-                        <Image src={icon.srcImg} alt="img" />
-                      </HoverCardTarget>
-                      <HoverCardDropdown>
-                        <Text className="text-center" size="sm">
-                          {icon.title == "search"
-                            ? "Go To Search Page"
-                            : icon.title == "love"
-                              ? "Go To Love Page"
-                              : icon.title == "cart"
-                                ? "Go To Cart Page"
-                                : null}
-                        </Text>
-                      </HoverCardDropdown>
-                    </HoverCard>
-                  </Group>
-                </>
-              </div>
-            )
-          })}
+            <div className="flex-1/2 flex justify-end items-center gap-18.75">
+              <Popover width={200} position="bottom" withArrow shadow="md">
+                <PopoverTarget>
+                  <div
+                    className="cursor-pointer text-[16px] font-medium"
+                    key={"00"}
+                  >
+                    <Image src={profileIcon} alt="img" />
+                  </div>
+                </PopoverTarget>
+                <PopoverDropdown>
+                  <div className="flex flex-col justify-start items-start gap-2">
+                    <Link href={`/auth/logIn`}>
+                      <Button
+                        className=" flex!"
+                        color="#B88E2F"
+                        variant="light"
+                        w={"100%"}
+                      >
+                        Log In
+                      </Button>
+                    </Link>
+                    <Link href={`/auth/register`}>
+                      <Button
+                        color="#B88E2F"
+                        className=" flex!"
+                        variant="outline"
+                        w={"100%"}
+                      >
+                        Register
+                      </Button>
+                    </Link>
+                  </div>
+                </PopoverDropdown>
+              </Popover>
+
+              {icons.map((icon) => {
+                return (
+                  <div
+                    className="cursor-pointer text-[16px] font-medium"
+                    key={icon.id}
+                  >
+                    <>
+                      <Group justify="center">
+                        <HoverCard width={200} shadow="md">
+                          <HoverCardTarget>
+                            <Image
+                              src={icon.srcImg}
+                              className=" max-w-25!"
+                              alt="img"
+                            />
+                          </HoverCardTarget>
+                          <HoverCardDropdown>
+                            <Text className="text-center" size="sm">
+                              {icon.title == "search"
+                                ? "Go To Search Page"
+                                : icon.title == "love"
+                                  ? "Go To Love Page"
+                                  : icon.title == "cart"
+                                    ? "Go To Cart Page"
+                                    : null}
+                            </Text>
+                          </HoverCardDropdown>
+                        </HoverCard>
+                      </Group>
+                    </>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

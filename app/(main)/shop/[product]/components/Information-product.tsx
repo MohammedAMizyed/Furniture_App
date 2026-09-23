@@ -74,10 +74,10 @@ export default function InformationProduct({ product }: Props) {
           transitionDuration={100}
           transitionTimingFunction="linear"
         >
-          <Text>
-            {product.reviews.map((item, index) => {
+          <Box>
+            {product.reviews.map((item) => {
               return (
-                <div key={index}>
+                <div key={item.reviewerEmail}>
                   <div className="bg-[#F9F1E7] p-5 rounded-2xl m-2">
                     <div className="mb-2">
                       <h1 className="text-2xl font-black ">
@@ -102,7 +102,7 @@ export default function InformationProduct({ product }: Props) {
                 </div>
               )
             })}{" "}
-          </Text>
+          </Box>
         </Collapse>
       </Box>
 

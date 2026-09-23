@@ -15,6 +15,7 @@ export default async function OurProducts() {
           return (
             <div key={item.id} className="basis-[23%]">
               <ProductCard
+                discount={item.discountPercentage}
                 id={item.id}
                 title={item.title}
                 desc={item.category}

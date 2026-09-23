@@ -7,6 +7,11 @@ import { Product } from "@/types/product"
 import HeroSection from "./hero-section"
 import InformationProduct from "./Information-product"
 import { useState } from "react"
+import { FaFacebook } from "react-icons/fa6"
+import { FaLinkedin } from "react-icons/fa"
+import { FaTwitter } from "react-icons/fa"
+import CarouselProducts from "./carousel-products"
+
 type Props = {
   product: Product | undefined
   isLoading: boolean
@@ -88,7 +93,26 @@ export default function ProductDetails({ product, isLoading }: Props) {
             <p className="text-[13px] font-normal max-w-[400px] my-3">
               {data?.description}
             </p>
-
+            <div>
+              <div>
+                <div>
+                  Origin Price : <span>{data?.price}</span>
+                </div>
+                <div className="text-green-500">
+                  Discount : <span>{data?.discountPercentage}%</span>
+                </div>
+                <div>
+                  stock :{" "}
+                  <span>{data?.stock == 0 ? "Out of stock" : data?.stock}</span>
+                </div>
+                <div>
+                  Is Available : <span>{data?.availabilityStatus}</span>
+                </div>
+                <div>
+                  Return Policy : <span>{data?.returnPolicy}</span>
+                </div>
+              </div>
+            </div>
             <div className="border-b-1! py-3 border-[#9F9F9F] flex justify-start items-center gap-2">
               <div className="flex items-center gap-2">
                 Quantity:
@@ -121,18 +145,23 @@ export default function ProductDetails({ product, isLoading }: Props) {
               </Button>
             </div>
             <div className="my-3">
-              <div className="flex my-2 items-center gap-">
+              <div className="flex my-2 items-center ">
                 <span className="block w-25">SKU </span> : {data?.sku}
               </div>
-              <div className="flex my-2 items-center gap-">
+              <div className="flex my-2 items-center ">
                 <span className="block w-25">Category </span> : {data?.category}
               </div>
-              <div className="flex my-2 items-center gap-">
+              <div className="flex my-2 items-center ">
                 <span className="block w-25">Tags </span> :{" "}
                 {data?.tags.map((item) => item)}
               </div>
-              <div className="flex my-2 items-center gap-">
-                <span className="block w-25">Share </span> : {"78"}
+              <div className="flex my-2 items-center ">
+                <span className="block w-25">Share </span> :{" "}
+                <div className="flex items-center gap-2 mx-2">
+                  <FaFacebook />
+                  <FaLinkedin />
+                  <FaTwitter />
+                </div>
               </div>
             </div>
           </div>
@@ -145,6 +174,7 @@ export default function ProductDetails({ product, isLoading }: Props) {
       ) : (
         product && <InformationProduct product={product} />
       )}
+      <CarouselProducts />
     </>
   )
 }

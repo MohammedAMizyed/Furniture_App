@@ -8,7 +8,6 @@ export default function Page() {
   return (
     <div className="">
       <ProductDetails product={data} isLoading={isLoading} />
-      
     </div>
   )
 }

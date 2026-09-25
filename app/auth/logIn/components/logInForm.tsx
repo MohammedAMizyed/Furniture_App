@@ -1,7 +1,28 @@
+"use client"
 import Image from "next/image"
 import keyLogin from "../../../../public/keyforlogin.png"
 import { Button, TextInput } from "@mantine/core"
+import z from "zod"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import Link from "next/link"
+
 export default function LogInForm() {
+  const formSchema = z.object({
+    username: z.string().min(1, "The username must be at least 3 characters"),
+    password: z.string().min(6, "The password must be at lest 6 characters"),
+  })
+  type formSchemaType = z.infer<typeof formSchema>
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<formSchemaType>({
+    resolver: zodResolver(formSchema),
+  })
+  const onSubmit: SubmitHandler<formSchemaType> = (data) => {
+    console.log(data)
+  }
   return (
     <div>
       <div>
@@ -12,11 +33,13 @@ export default function LogInForm() {
           Log In To Your Account
         </h1>
       </div>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput
+          {...register("username")}
           classNames={{
             label: "",
-            input: "border-b-2! rounded-none! my-2 border-[#ddd]! border-black",
+            input:
+              "border-b-2! focus:border-[#B88E2F]! rounded-none! my-2 border-[#ddd]! border-black",
           }}
           className="my-5"
           variant=""
@@ -24,10 +47,17 @@ export default function LogInForm() {
           label="User Name"
           placeholder="Enter Your Name"
         />
+        {errors.username && (
+          <span className="text-red-700 text-[13px]">
+            {errors.username.message}
+          </span>
+        )}
         <TextInput
+          {...register("password")}
           classNames={{
             label: "",
-            input: "border-b-2! rounded-none! my-2 border-[#ddd]! border-black",
+            input:
+              "border-b-2! focus:border-[#B88E2F]! rounded-none! my-2 border-[#ddd]! border-black",
           }}
           className="my-5"
           variant=""
@@ -36,6 +66,11 @@ export default function LogInForm() {
           label="Password"
           placeholder="Enter Your Password"
         />
+        {errors.password && (
+          <span className="text-red-700 text-[13px]">
+            {errors.password.message}
+          </span>
+        )}
         <Button type="submit" color="#B88E2F" variant={"filled"} w={"100%"}>
           Log In
         </Button>
@@ -45,10 +80,12 @@ export default function LogInForm() {
           </h3>
           <h4 className="text-center">
             Don&apos;t have an account?
-            <span className=" cursor-pointer font-bold text-[#B88E2F]">
-              {" "}
+            <Link
+              className=" cursor-pointer font-bold text-[#B88E2F]"
+              href={`/auth/register`}
+            >
               Create New Account
-            </span>
+            </Link>
           </h4>
         </div>
       </form>

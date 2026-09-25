@@ -4,7 +4,15 @@ export interface ProductsTypeResponse {
   skip: number
   limit: number
 }
-
+export interface AddProduct {
+  name: string
+  price: number | string
+  description: string
+}
+export interface UpdateProduct {
+  title: string
+  price: number | string
+}
 export interface Product {
   id: number
   title: string

@@ -1,4 +1,4 @@
-import { Product, ProductsTypeResponse } from "@/types/product"
+import { AddProduct, Product, ProductsTypeResponse } from "@/types/product"
 import api from "./api"
 import { category_keys } from "@/types/categories"
 
@@ -34,6 +34,14 @@ export const productsServices = {
   },
   delete: async (id: number | string) => {
     const response = await api.delete(`/products/${id}`)
+    return response.data
+  },
+  add: async (data: AddProduct) => {
+    const response = await api.post(`/products/add`, data)
+    return response.data
+  },
+  update: async (data: { title: string; price: string | number }) => {
+    const response = await api.put(`/products/1`, data)
     return response.data
   },
 }

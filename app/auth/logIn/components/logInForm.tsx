@@ -6,6 +6,7 @@ import z from "zod"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
+import { useLogIn } from "@/hooks/auth/useLogIn"
 
 export default function LogInForm() {
   const formSchema = z.object({
@@ -20,7 +21,9 @@ export default function LogInForm() {
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   })
+  // const {data ,mutate} = useLogIn()
   const onSubmit: SubmitHandler<formSchemaType> = (data) => {
+    // mutate(data,)
     console.log(data)
   }
   return (
@@ -41,7 +44,7 @@ export default function LogInForm() {
             input:
               "border-b-2! focus:border-[#B88E2F]! rounded-none! my-2 border-[#ddd]! border-black",
           }}
-          className="my-5"
+          className="mt-5"
           variant=""
           size="md"
           label="User Name"
@@ -59,7 +62,7 @@ export default function LogInForm() {
             input:
               "border-b-2! focus:border-[#B88E2F]! rounded-none! my-2 border-[#ddd]! border-black",
           }}
-          className="my-5"
+          className="mt-5"
           variant=""
           size="md"
           radius="sm"
@@ -71,7 +74,13 @@ export default function LogInForm() {
             {errors.password.message}
           </span>
         )}
-        <Button type="submit" color="#B88E2F" variant={"filled"} w={"100%"}>
+        <Button
+          className="my-5!"
+          type="submit"
+          color="#B88E2F"
+          variant={"filled"}
+          w={"100%"}
+        >
           Log In
         </Button>
         <div>

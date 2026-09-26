@@ -16,7 +16,11 @@ export default function RegisterForm() {
     age: z.string().min(6, "The age must be at lest 18 year"),
   })
   type formSchemaType = z.infer<typeof formSchema>
-  const { register, handleSubmit } = useForm<formSchemaType>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   })
 
@@ -29,7 +33,7 @@ export default function RegisterForm() {
         <div className="flex justify-center">
           <Image className="w-[100px] h-[100px]" alt="" src={keyLogin} />
         </div>
-        <h1 className="text-2xl my-5 font-black text-center">
+        <h1 className="text-2xl my-3 font-black text-center">
           Create New Account
         </h1>
       </div>
@@ -37,30 +41,38 @@ export default function RegisterForm() {
         <TextInput
           {...register("firstName")}
           classNames={{
-            label: "",
             input:
               "border-b-2! focus:border-[#B88E2F]! rounded-none! my-2 border-[#ddd]! border-black",
           }}
-          className="my-5"
+          className="mt-2!"
           variant=""
           size="md"
           label="First Name"
           placeholder="Enter First Name"
-        />
+        />{" "}
+        {errors.firstName && (
+          <span className="text-red-700 text-[13px]">
+            {errors.firstName.message}
+          </span>
+        )}
         <TextInput
           {...register("secondName")}
           classNames={{
-            label: "",
             input:
               "border-b-2! focus:border-[#B88E2F]! rounded-none! my-2 border-[#ddd]! border-black",
           }}
-          className="my-5"
+          className="mt-2"
           variant=""
           size="md"
           radius="sm"
           label="Second Name"
           placeholder="Enter Second Name"
         />
+        {errors.secondName && (
+          <span className="text-red-700 text-[13px]">
+            {errors.secondName.message}
+          </span>
+        )}
         <TextInput
           {...register("age")}
           classNames={{
@@ -68,14 +80,23 @@ export default function RegisterForm() {
             input:
               "border-b-2! duration-200 focus:border-[#B88E2F]! rounded-none! my-2 border-[#ddd]! border-black",
           }}
-          className="my-5"
+          className="mt-2"
           variant=""
           size="md"
           radius="sm"
           label="Age"
           placeholder="Enter Your Age"
         />
-        <Button type="submit" color="#B88E2F" variant={"filled"} w={"100%"}>
+        {errors.age && (
+          <span className="text-red-700 text-[13px]">{errors.age.message}</span>
+        )}
+        <Button
+          className="my-1!"
+          type="submit"
+          color="#B88E2F"
+          variant={"filled"}
+          w={"100%"}
+        >
           Register
         </Button>
         <div>

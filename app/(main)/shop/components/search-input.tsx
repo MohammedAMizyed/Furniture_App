@@ -1,33 +1,23 @@
 "use client"
-import { Button, TextInput } from "@mantine/core"
-import { useState } from "react"
+import { useDebouncedCallback } from "@/hooks/useDebouncedCallback"
+import { TextInput } from "@mantine/core"
 type Props = {
-  search: string
   setSearch: (q: string) => void
 }
-export default function SearchInput({ search, setSearch }: Props) {
-  const [inputValue, setInputValue] = useState<string | null>(null)
+export default function SearchInput({ setSearch }: Props) {
+  const search = useDebouncedCallback((q: string) => {
+    setSearch(q)
+  }, 500)
+
   return (
     <form className="flex justify-start items-center gap-5">
       <TextInput
-        value={search}
-        onChange={(e) => {
-          setInputValue(e.currentTarget.value)
-        }}
+        onChange={(e) => search(e.currentTarget.value.trim())}
         variant="unstyled"
         w={"400px"}
         className="bg-white p-1 px-3 rounded-xl"
         placeholder="Search for products"
       />
-      <Button
-        onSubmit={() => {
-          setSearch(inputValue!)
-        }}
-        color="#B88E2F"
-        type="submit"
-      >
-        Search
-      </Button>
     </form>
   )
 }

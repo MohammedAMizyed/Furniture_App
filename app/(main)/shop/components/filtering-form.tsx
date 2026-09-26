@@ -2,7 +2,7 @@
 import { CATEGORY_KEYS } from "@/config"
 import { CategoriesTypeResponse } from "@/types/categories"
 import { Accordion } from "@mantine/core"
-import { Dispatch, SetStateAction, Suspense } from "react"
+import { Dispatch, SetStateAction } from "react"
 import { FiFilter } from "react-icons/fi"
 
 type Props = {

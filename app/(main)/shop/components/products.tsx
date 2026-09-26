@@ -1,37 +1,31 @@
 "use query"
 import ProductCard from "@/app/components/layout/productCard"
-import { CATEGORY_KEYS } from "@/config"
-import { useProductsByCategories } from "@/hooks/useProductsByCategory"
 import { useProductsBySearch } from "@/hooks/useProductsBySearch"
 
 type Props = {
-  choice: (typeof CATEGORY_KEYS)[number] | null
   search: string
 }
-export default function Products({ choice, search }: Props) {
-  const { data, isLoading, isError } = useProductsByCategories(choice!)
+export default function Products({ search }: Props) {
   const {
-    data: searchData,
+    data: products,
     isLoading: loadingSearch,
     isError: errorSearch,
   } = useProductsBySearch(search)
 
-  if (loadingSearch || isLoading) {
+  if (loadingSearch) {
     return (
       <div className="text-2xl font-bold my-10 text-center animate-pulse">
         Loading...
       </div>
     )
   }
-  if (errorSearch || isError) {
+  if (errorSearch) {
     return (
       <div className="text-red-700 text-2xl font-bold my-10 text-center animate-pulse">
         There is something went wrong
       </div>
     )
   }
-
-  const products = search ? searchData : choice ? data : null
 
   if (!products) {
     return (
@@ -47,13 +41,7 @@ export default function Products({ choice, search }: Props) {
       <div className="flex justify-center items-center gap-9 flex-wrap">
         {products.map((item) => (
           <div key={item.id} className="basis-[23%]">
-            <ProductCard
-              id={item.id}
-              title={item.title}
-              desc={item.category}
-              price={item.price}
-              img={item.thumbnail}
-            />
+            <ProductCard {...item} />
           </div>
         ))}
       </div>

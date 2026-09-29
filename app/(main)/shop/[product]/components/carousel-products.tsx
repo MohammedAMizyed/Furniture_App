@@ -30,14 +30,7 @@ export default function CarouselProducts() {
       >
         {products?.map((item) => (
           <CarouselSlide key={item.id}>
-            <ProductCard
-              desc={item.description}
-              discount={item.discountPercentage}
-              id={item.id}
-              img={item.images[0]}
-              price={item.price}
-              title={item.title}
-            />
+            <ProductCard product={item} />
           </CarouselSlide>
         ))}
       </Carousel>

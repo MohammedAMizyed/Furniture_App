@@ -19,7 +19,7 @@ export default async function Categories() {
           Lorem ipsum dolor sit amet , consectetur adipiscing elit.
         </h2>
       </div>
-      <div className="flex justify-center items-center gap-5">
+      <div className="flex flex-wrap justify-center items-center gap-5">
         {categoriesData?.map((item, index) => {
           return (
             <div

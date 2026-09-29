@@ -1,4 +1,4 @@
-"use query"
+"use client"
 import ProductCard from "@/app/components/layout/productCard"
 import { useProductsBySearch } from "@/hooks/useProductsBySearch"
 
@@ -30,9 +30,7 @@ export default function Products({ search }: Props) {
   if (!products) {
     return (
       <div className="container my-10">
-        <h1 className="text-3xl font-bold text-center">
-          Choose A Category Or Search For Product
-        </h1>
+        <h1 className="text-3xl font-bold text-center">Search For Product</h1>
       </div>
     )
   }
@@ -41,7 +39,7 @@ export default function Products({ search }: Props) {
       <div className="flex justify-center items-center gap-9 flex-wrap">
         {products.map((item) => (
           <div key={item.id} className="basis-[23%]">
-            <ProductCard {...item} />
+            <ProductCard product={item} />
           </div>
         ))}
       </div>

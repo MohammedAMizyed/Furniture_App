@@ -1,6 +1,7 @@
 import ProductCard from "@/app/components/layout/productCard"
 import { productsServices } from "@/services/products"
 import { Button } from "@mantine/core"
+import Link from "next/link"
 
 export default async function OurProducts() {
   const products = await productsServices.getByCategory({
@@ -14,29 +15,23 @@ export default async function OurProducts() {
         {products.map((item) => {
           return (
             <div key={item.id} className="basis-[23%]">
-              <ProductCard
-                discount={item.discountPercentage}
-                id={item.id}
-                title={item.title}
-                desc={item.category}
-                price={item.price}
-                img={item.thumbnail}
-              />
+              <ProductCard product={item} />
             </div>
           )
         })}
       </div>
-
-      <Button
-        className="my-10 text-center m-auto flex! justify-center!"
-        variant="outline"
-        color="yellow"
-        size="xl"
-        radius="xs"
-        w={245}
-      >
-        See
-      </Button>
+      <Link href={"/shop"}>
+        <Button
+          className="my-10 text-center m-auto flex! justify-center!"
+          variant="outline"
+          color="yellow"
+          size="xl"
+          radius="xs"
+          w={245}
+        >
+          See
+        </Button>
+      </Link>
     </div>
   )
 }

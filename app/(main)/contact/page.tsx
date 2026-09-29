@@ -1,7 +1,7 @@
-import LandingPages from "../components/layout/landing"
-import locationIcon from "../../public/location.svg"
-import phoneIcon from "../../public/phone.svg"
-import timeIcon from "../../public/timeIcon.svg"
+import LandingPages from "@/app/components/layout/landing"
+import locationIcon from "../../../public/location.svg"
+import phoneIcon from "../../../public/phone.svg"
+import timeIcon from "../../../public/timeIcon.svg"
 import Image from "next/image"
 export default function ContactPage() {
   const locations = [

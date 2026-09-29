@@ -11,6 +11,8 @@ import { FaFacebook } from "react-icons/fa6"
 import { FaLinkedin } from "react-icons/fa"
 import { FaTwitter } from "react-icons/fa"
 import CarouselProducts from "./carousel-products"
+import { notifications } from "@mantine/notifications"
+import useCartStore from "@/stores/useCart"
 
 type Props = {
   product: Product | undefined
@@ -19,7 +21,27 @@ type Props = {
 export default function ProductDetails({ product, isLoading }: Props) {
   const data = product
   const [quantity, setQuantity] = useState<number>(0)
-
+  const { add, products } = useCartStore()
+  const handleAddProduct = (product: Product) => {
+    const filterProduct = products.some((item) => item.id === product.id)
+    add(product)
+    if (filterProduct) {
+      notifications.show({
+        title: "The Product Already Exist In Your Cart",
+        message: "",
+        color: "red",
+        priority: 10,
+        position: "top-center",
+      })
+    } else {
+      notifications.show({
+        title: "Add Successfully",
+        message: "This Product in your cart right know🌟",
+        position: "top-center",
+      })
+    }
+    return filterProduct
+  }
   return (
     <>
       <HeroSection
@@ -140,7 +162,13 @@ export default function ProductDetails({ product, isLoading }: Props) {
                 </div>
               </div>
 
-              <Button variant="light" className="text-[#616161]! bg-[#F9F1E7]!">
+              <Button
+                onClick={() => {
+                  if (data) handleAddProduct(data)
+                }}
+                variant="light"
+                className="text-[#616161]! bg-[#F9F1E7]!"
+              >
                 Add To Cart
               </Button>
             </div>

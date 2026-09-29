@@ -14,7 +14,7 @@ export default function Footer() {
   ]
   return (
     <div className="container  border-t-2 border-[#ddd] pt-5">
-      <div className="border-b-2 border-[#ddd] pb-10 flex justify-between items-start gap-10">
+      <div className="border-b-2 border-[#ddd] pb-10 flex justify-between flex-wrap items-start gap-10">
         <div>
           <h1 className="text-[24px] my-3 mb-7 font-bold ">Funiro.</h1>
           <p className="max-w-[300px] text-[16px] font-normal text-[#9F9F9F]">

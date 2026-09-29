@@ -32,19 +32,26 @@ export default function Advantages() {
   ]
   return (
     <div className=" bg-[#FAF3EA] mt-5 py-15">
-      <div className="container  flex justify-between items-center gap-10">
+      <div className="container flex-wrap  flex justify-center items-center gap-10">
         {advantages.map((item) => {
           return (
-            <div
-              className="flex justify-center items-center gap-4"
-              key={item.id}
-            >
-              <div>
-                <Image alt={item.title} src={item.img} />
-              </div>
-              <div>
-                <h1 className="text-[25px] font-semibold">{item.title}</h1>
-                <p className="text-[20px] font-medium">{item.desc}</p>
+            <div className="flex-[100%] sm:flex-[20%] " key={item.id}>
+              <div className="flex  sm:justify-center items-center gap-4">
+                <div>
+                  <Image
+                    className="object-cover  sm:min-w-[60px]"
+                    alt={item.title}
+                    src={item.img}
+                  />
+                </div>
+                <div>
+                  <h1 className="sm:text-[25px] text-[18px] font-semibold">
+                    {item.title}
+                  </h1>
+                  <p className="sm:text-[20px] text-[15px] font-medium">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
             </div>
           )

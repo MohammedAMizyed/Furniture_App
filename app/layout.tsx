@@ -3,7 +3,9 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google"
 
 import "./globals.css"
 import "@mantine/core/styles.css"
-
+import "@mantine/core/styles.css"
+// ‼️ import notifications styles after core package styles
+import "@mantine/notifications/styles.css"
 import Providers from "./providers"
 
 import { mantineHtmlProps } from "@mantine/core"

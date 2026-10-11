@@ -10,11 +10,13 @@ export default function SearchInput({ setSearch }: Props) {
   }, 500)
 
   return (
-    <form className="flex justify-start items-center gap-5">
+    <form className="flex justify-center  sm:justify-start items-center gap-5">
       <TextInput
+        classNames={{
+          input: "sm:w-[400px]! w-[250px]!",
+        }}
         onChange={(e) => search(e.currentTarget.value.trim())}
         variant="unstyled"
-        w={"400px"}
         className="bg-white p-1 px-3 rounded-xl"
         placeholder="Search for products"
       />

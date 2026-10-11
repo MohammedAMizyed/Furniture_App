@@ -130,7 +130,7 @@ export default function Header() {
                                 {icon.title == "search"
                                   ? "Go To Search Page"
                                   : icon.title == "love"
-                                    ? "Go To Love Page"
+                                    ? "Go To Favorite Page"
                                     : icon.title == "cart"
                                       ? "Go To Cart Page"
                                       : null}

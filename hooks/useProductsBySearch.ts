@@ -1,9 +1,16 @@
 import { productsServices } from "@/services/products"
-import { useQuery } from "@tanstack/react-query"
+import { keepPreviousData, useQuery } from "@tanstack/react-query"
 
-export const useProductsBySearch = (q: string) => {
+type Props = {
+  q: string
+  limit: number
+  skip: number
+}
+export const useProductsBySearch = ({ q, limit, skip }: Props) => {
   return useQuery({
-    queryKey: ["productsBySearch", q],
-    queryFn: () => productsServices.getBySearch(q),
+    queryKey: ["productsBySearch", q, limit, skip],
+    queryFn: () => productsServices.getBySearch({ q, limit, skip }),
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60,
   })
 }

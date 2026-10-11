@@ -8,13 +8,13 @@ export default function SideBar() {
     {
       id: 0,
       title: "Add Product",
-      path: "add-product",
+      path: "/dashboard/add-product",
       icon: <IoIosAddCircleOutline size={24} />,
     },
     {
       id: 1,
       title: "Edit Product",
-      path: "update-product",
+      path: "/dashboard/update-product",
       icon: <FaRegEdit size={24} />,
     },
     {

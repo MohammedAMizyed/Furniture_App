@@ -2,6 +2,11 @@ import { AddProduct, Product, ProductsTypeResponse } from "@/types/product"
 import api from "./api"
 import { category_keys } from "@/types/categories"
 
+type SearchProps = {
+  q: string
+  limit: number
+  skip: number
+}
 export const productsServices = {
   getByCategory: async ({
     category,
@@ -24,13 +29,15 @@ export const productsServices = {
     const response = await api.get<Product>(`/products/${id}`)
     return response.data
   },
-  getBySearch: async (q: string) => {
+  getBySearch: async ({ q, limit, skip }: SearchProps) => {
     const response = await api.get<ProductsTypeResponse>(`/products/search`, {
       params: {
         q,
+        limit,
+        skip,
       },
     })
-    return response.data.products
+    return response.data
   },
   delete: async (id: number | string) => {
     const response = await api.delete(`/products/${id}`)

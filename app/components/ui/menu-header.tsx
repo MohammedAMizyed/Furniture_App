@@ -31,9 +31,9 @@ export default function MenuHeader() {
     { id: 3, title: "Contact" },
   ]
   const icons = [
-    { id: 1, srcImg: searchIcon, title: "search", path: "shop" },
-    { id: 2, srcImg: loveIcon, title: "love", path: "favorite" },
-    { id: 3, srcImg: cartIcon, title: "cart", path: "cart" },
+    { id: 1, srcImg: searchIcon, title: "search", path: "/shop" },
+    { id: 2, srcImg: loveIcon, title: "love", path: "/favorite" },
+    { id: 3, srcImg: cartIcon, title: "cart", path: "/cart" },
   ]
   return (
     <Menu shadow="md" width={200}>
@@ -91,32 +91,32 @@ export default function MenuHeader() {
               key={icon.id}
             >
               <>
-                <Group justify="center">
-                  <HoverCard width={200} shadow="md">
-                    <HoverCardTarget>
-                      <Link href={`/${icon.path}`}>
+                <Link href={`${icon.path}`}>
+                  <Group justify="center">
+                    <HoverCard width={200} shadow="md">
+                      <HoverCardTarget>
                         <Image
                           src={icon.srcImg}
                           className=" max-w-25!"
                           alt="img"
                         />
-                      </Link>
-                    </HoverCardTarget>
-                    <div className="hidden lg:block">
-                      <HoverCardDropdown className="hidden! lg:block!">
-                        <Text className="text-center" size="sm">
-                          {icon.title == "search"
-                            ? "Go To Search Page"
-                            : icon.title == "love"
-                              ? "Go To Love Page"
-                              : icon.title == "cart"
-                                ? "Go To Cart Page"
-                                : null}
-                        </Text>
-                      </HoverCardDropdown>
-                    </div>
-                  </HoverCard>
-                </Group>
+                      </HoverCardTarget>
+                      <div className="hidden lg:block">
+                        <HoverCardDropdown className="hidden! lg:block!">
+                          <Text className="text-center" size="sm">
+                            {icon.title == "search"
+                              ? "Go To Search Page"
+                              : icon.title == "love"
+                                ? "Go To Favorite Page"
+                                : icon.title == "cart"
+                                  ? "Go To Cart Page"
+                                  : null}
+                          </Text>
+                        </HoverCardDropdown>
+                      </div>
+                    </HoverCard>
+                  </Group>
+                </Link>
               </>
             </MenuItem>
           )

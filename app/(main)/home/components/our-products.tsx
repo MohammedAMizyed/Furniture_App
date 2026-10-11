@@ -11,10 +11,10 @@ export default async function OurProducts() {
   return (
     <div className="container my-20">
       <h1 className="text-[40px] mb-10 font-bold text-center">Our Products</h1>
-      <div className="flex justify-center items-center gap-9 flex-wrap ">
+      <div className="flex justify-center items-start gap-9 flex-wrap ">
         {products.map((item) => {
           return (
-            <div key={item.id} className="basis-[23%]">
+            <div key={item.id} className=" basis-[90%]  sm:basis-[23%]">
               <ProductCard product={item} />
             </div>
           )

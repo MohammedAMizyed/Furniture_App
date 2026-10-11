@@ -11,10 +11,14 @@ export default function LandingPages() {
 
   return (
     <div className="select-none overflow-hidden relative w-full max-h-79 h-full">
-      <Image className="h-full w-full object-cover" src={bgImg} alt="" />
+      <Image
+        className="h-[150px] sm:h-full w-full object-cover"
+        src={bgImg}
+        alt=""
+      />
       <div className=" absolute top-1/2 left-1/2 -translate-1/2">
         <Image className=" m-auto" src={logo} alt="" />
-        <h1 className="text-[48px] font-medium ">
+        <h1 className=" text-center  text-[25px] sm:text-[48px] font-medium ">
           {location.slice(1, 2).toUpperCase() + location.slice(2)}{" "}
         </h1>
         <div className="flex justify-center items-center gap-1">

@@ -1,7 +1,6 @@
 "use client"
 import {
   Button,
-  Notification,
   Table,
   TableCaption,
   TableTbody,
@@ -41,7 +40,7 @@ export default function LandingCart() {
           Your Cart Is Empty
         </div>
       ) : (
-        <div className="flex my-15 gap-15  justify-between">
+        <div className="flex flex-col-reverse sm:flex-row my-15 gap-15  justify-between">
           <div className="flex-3/7">
             <Table stickyHeaderOffset={60}>
               <TableThead className="">
@@ -71,7 +70,7 @@ export default function LandingCart() {
                         </div>
                       </TableTd>
                       <TableTd className="text-[#9F9F9F]!">
-                        {item.price}
+                        {item.price} <span className="text-green-600">$</span>
                       </TableTd>
                       <TableTd>{item.price}</TableTd>
                       <TableTd>
@@ -113,14 +112,23 @@ export default function LandingCart() {
             <div className="my-3 flex justify-between items-center gap-2">
               <h4 className="text-[16px] font-medium">Subtotal</h4>
               <span className="text-[16px] font-normal text-[#9F9F9F]">
-                Rs. 250,000.00
+                Rs.{" "}
+                {products
+                  .reduce((total, item) => total + item.price * 1, 0)
+                  .toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
               </span>
             </div>
             <div className="my-3 flex justify-between items-center gap-2">
               <h4 className="text-[16px] font-medium">Total</h4>
-              <span className="text-[#B88E2F] text-[20px] font-medium">
-                Rs. 250,000.00
-              </span>
+              <div className="text-[#B88E2F] text-[20px] font-medium">
+                {products
+                  .reduce((total, item) => total + item.price, 0)
+                  .toFixed(2)}
+                $
+              </div>
             </div>
             <Button
               variant="outline"

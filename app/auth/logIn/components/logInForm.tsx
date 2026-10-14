@@ -7,10 +7,12 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useLogIn } from "@/hooks/auth/useLogIn"
+import { notifications } from "@mantine/notifications"
+import { useRouter } from "next/navigation"
 
 export default function LogInForm() {
   const formSchema = z.object({
-    username: z.string().min(1, "The username must be at least 3 characters"),
+    username: z.string().min(3, "The username must be at least 3 characters"),
     password: z.string().min(6, "The password must be at lest 6 characters"),
   })
   type formSchemaType = z.infer<typeof formSchema>
@@ -21,9 +23,36 @@ export default function LogInForm() {
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   })
-  // const {data ,mutate} = useLogIn()
+  const { isPending, mutate } = useLogIn()
+  const router = useRouter()
   const onSubmit: SubmitHandler<formSchemaType> = (data) => {
-    // mutate(data,)
+    mutate(
+      { password: data.password, username: data.username, expiresInMins: 60 },
+      {
+        onSuccess: (data) => {
+          notifications.show({
+            title: "The Log In Is Successfully",
+            message: "",
+            color: "green",
+            priority: 10,
+            position: "top-center",
+          })
+          localStorage.setItem("accessToken", data.accessToken)
+          localStorage.setItem("refreshToken", data.refreshToken)
+          router.push("/")
+        },
+        onError: (err) => {
+          notifications.show({
+            title: "LogIn Field",
+            message: "There is something went wrong tray again later",
+            color: "red",
+            priority: 10,
+            position: "top-center",
+          })
+          console.log(err)
+        },
+      },
+    )
     console.log(data)
   }
   return (
@@ -75,6 +104,7 @@ export default function LogInForm() {
           </span>
         )}
         <Button
+          loading={isPending}
           className="my-5!"
           type="submit"
           color="#B88E2F"
@@ -83,6 +113,7 @@ export default function LogInForm() {
         >
           Log In
         </Button>
+
         <div>
           <h3 className="my-2  cursor-pointer font-medium text-[#B88E2F]">
             Forget My Password?

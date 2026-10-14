@@ -39,50 +39,12 @@ export default function MenuHeader() {
     <Menu shadow="md" width={200}>
       <MenuTarget>
         <div className="cursor-pointer mx-2">
-          <FiList size={25} />
+          <FiList size={29} />
         </div>
       </MenuTarget>
 
       <MenuDropdown>
         <MenuLabel>Application</MenuLabel>
-        <MenuItem>
-          <Group justify="center">
-            <Popover width={200} position="bottom" withArrow shadow="md">
-              <PopoverTarget>
-                <div
-                  className="cursor-pointer text-[16px] font-medium"
-                  key={"00"}
-                >
-                  <Image src={profileIcon} alt="img" />
-                </div>
-              </PopoverTarget>
-              <PopoverDropdown>
-                <div className="flex flex-col justify-start items-start gap-2">
-                  <Link className="w-full!" href={`/auth/logIn`}>
-                    <Button
-                      className=" flex! w-full! justify-center!"
-                      color="#B88E2F"
-                      variant="light"
-                      w={"100%"}
-                    >
-                      Log In
-                    </Button>
-                  </Link>
-                  <Link className="w-full" href={`/auth/register`}>
-                    <Button
-                      color="#B88E2F"
-                      className=" flex! w-full! justify-center!"
-                      variant="outline"
-                      w={"100%"}
-                    >
-                      Register
-                    </Button>
-                  </Link>
-                </div>
-              </PopoverDropdown>
-            </Popover>
-          </Group>
-        </MenuItem>
 
         {icons.map((icon) => {
           return (

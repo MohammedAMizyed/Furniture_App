@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import logo from "../../../public/Meubel House_Logos-05.svg"
 import profileIcon from "../../../public/profile icon.svg"
@@ -5,6 +6,7 @@ import searchIcon from "../../../public/search.svg"
 import loveIcon from "../../../public/love icon.svg"
 import cartIcon from "../../../public/ant-design_shopping-cart-outlined.svg"
 import Link from "next/link"
+import { CgProfile } from "react-icons/cg"
 
 import {
   Button,
@@ -24,6 +26,7 @@ import {
   Text,
 } from "@mantine/core"
 import MenuHeader from "../ui/menu-header"
+import { useAuth } from "@/hooks/auth/useAuth"
 export default function Header() {
   const links = [
     { id: 0, title: "Home" },
@@ -36,8 +39,9 @@ export default function Header() {
     { id: 2, srcImg: loveIcon, title: "love", path: "favorite" },
     { id: 3, srcImg: cartIcon, title: "cart", path: "cart" },
   ]
+  const { isLoggedIn, isLoading, logout } = useAuth()
   return (
-    <div className="container">
+    <div className="">
       <div className="h-[80px] flex justify-between items-center gap-1">
         <div className="flex-1/3 cursor-pointer flex justify-start items-center gap-2">
           <Link href={"/"}>
@@ -46,7 +50,84 @@ export default function Header() {
           <span className="text-[34px] font-bold ">Furniro</span>
         </div>
         <div className="sm:hidden ">
-          <MenuHeader />
+          <div className="flex justify-center items-center gap-1">
+            {isLoggedIn ? (
+              <Popover width={200} position="bottom" withArrow shadow="md">
+                <PopoverTarget>
+                  <div
+                    className="cursor-pointer text-[16px] font-medium"
+                    key={"00"}
+                  >
+                    <CgProfile size={28} className="ml-3!" />
+                  </div>
+                </PopoverTarget>
+                <PopoverDropdown>
+                  <div className="flex flex-col justify-start items-start gap-2">
+                    <Button
+                      onClick={() => {
+                        logout()
+                      }}
+                      className=" flex! w-full! justify-center!"
+                      color="#B88E2F"
+                      variant="light"
+                      w={"100%"}
+                    >
+                      Log out
+                    </Button>
+                    <Link className="w-full" href={`/profile`}>
+                      <Button
+                        color="#B88E2F"
+                        className=" flex! w-full! justify-center!"
+                        variant="outline"
+                        w={"100%"}
+                      >
+                        <div className="flex justify-center items-center gap-1">
+                          <CgProfile size={20} />
+                          Profile
+                        </div>
+                      </Button>
+                    </Link>
+                  </div>
+                </PopoverDropdown>
+              </Popover>
+            ) : (
+              <Popover width={200} position="bottom" withArrow shadow="md">
+                <PopoverTarget>
+                  <div
+                    className="cursor-pointer text-[16px] font-medium"
+                    key={"00"}
+                  >
+                    <Image src={profileIcon} alt="img" />
+                  </div>
+                </PopoverTarget>
+                <PopoverDropdown>
+                  <div className="flex flex-col justify-start items-start gap-2">
+                    <Link className="w-full!" href={`/auth/logIn`}>
+                      <Button
+                        className=" flex! w-full! justify-center!"
+                        color="#B88E2F"
+                        variant="light"
+                        w={"100%"}
+                      >
+                        Log In
+                      </Button>
+                    </Link>
+                    <Link className="w-full" href={`/auth/register`}>
+                      <Button
+                        color="#B88E2F"
+                        className=" flex! w-full! justify-center!"
+                        variant="outline"
+                        w={"100%"}
+                      >
+                        Register
+                      </Button>
+                    </Link>
+                  </div>
+                </PopoverDropdown>
+              </Popover>
+            )}
+            <MenuHeader />
+          </div>
         </div>
         <div className="hidden sm:block flex-2/3">
           <div className="flex justify-between items-center">
@@ -67,11 +148,47 @@ export default function Header() {
               })}
             </div>
 
-            <div className="hidden sm:block  lg:hidden">
-              <MenuHeader />
-            </div>
-            <div className="  hidden lg:block flex-1/2">
-              <div className=" flex justify-end items-center gap-18.75">
+            <div className="hidden sm:flex  lg:hidden">
+              {isLoggedIn ? (
+                <Popover width={200} position="bottom" withArrow shadow="md">
+                  <PopoverTarget>
+                    <div
+                      className="cursor-pointer text-[16px] font-medium"
+                      key={"00"}
+                    >
+                      <CgProfile size={28} className="ml-3!" />
+                    </div>
+                  </PopoverTarget>
+                  <PopoverDropdown>
+                    <div className="flex flex-col justify-start items-start gap-2">
+                      <Button
+                        onClick={() => {
+                          logout()
+                        }}
+                        className=" flex! w-full! justify-center!"
+                        color="#B88E2F"
+                        variant="light"
+                        w={"100%"}
+                      >
+                        Log out
+                      </Button>
+                      <Link className="w-full" href={`/profile`}>
+                        <Button
+                          color="#B88E2F"
+                          className=" flex! w-full! justify-center!"
+                          variant="outline"
+                          w={"100%"}
+                        >
+                          <div className="flex justify-center items-center gap-1">
+                            <CgProfile size={20} />
+                            Profile
+                          </div>
+                        </Button>
+                      </Link>
+                    </div>
+                  </PopoverDropdown>
+                </Popover>
+              ) : (
                 <Popover width={200} position="bottom" withArrow shadow="md">
                   <PopoverTarget>
                     <div
@@ -106,6 +223,86 @@ export default function Header() {
                     </div>
                   </PopoverDropdown>
                 </Popover>
+              )}
+              <MenuHeader />
+            </div>
+            <div className="  hidden lg:block flex-1/2">
+              <div className=" flex justify-end items-center gap-18.75">
+                {isLoggedIn ? (
+                  <Popover width={200} position="bottom" withArrow shadow="md">
+                    <PopoverTarget>
+                      <div
+                        className="cursor-pointer text-[16px] font-medium"
+                        key={"00"}
+                      >
+                        <CgProfile size={28} className="ml-3!" />
+                      </div>
+                    </PopoverTarget>
+                    <PopoverDropdown>
+                      <div className="flex flex-col justify-start items-start gap-2">
+                        <Button
+                          onClick={() => {
+                            logout()
+                          }}
+                          className=" flex! w-full! justify-center!"
+                          color="#B88E2F"
+                          variant="light"
+                          w={"100%"}
+                        >
+                          Log out
+                        </Button>
+                        <Link className="w-full" href={`/profile`}>
+                          <Button
+                            color="#B88E2F"
+                            className=" flex! w-full! justify-center!"
+                            variant="outline"
+                            w={"100%"}
+                          >
+                            <div className="flex justify-center items-center gap-1">
+                              <CgProfile size={20} />
+                              Profile
+                            </div>
+                          </Button>
+                        </Link>
+                      </div>
+                    </PopoverDropdown>
+                  </Popover>
+                ) : (
+                  <Popover width={200} position="bottom" withArrow shadow="md">
+                    <PopoverTarget>
+                      <div
+                        className="cursor-pointer text-[16px] font-medium"
+                        key={"00"}
+                      >
+                        <Image src={profileIcon} alt="img" />
+                      </div>
+                    </PopoverTarget>
+                    <PopoverDropdown>
+                      <div className="flex flex-col justify-start items-start gap-2">
+                        <Link className="w-full!" href={`/auth/logIn`}>
+                          <Button
+                            className=" flex! w-full! justify-center!"
+                            color="#B88E2F"
+                            variant="light"
+                            w={"100%"}
+                          >
+                            Log In
+                          </Button>
+                        </Link>
+                        <Link className="w-full" href={`/auth/register`}>
+                          <Button
+                            color="#B88E2F"
+                            className=" flex! w-full! justify-center!"
+                            variant="outline"
+                            w={"100%"}
+                          >
+                            Register
+                          </Button>
+                        </Link>
+                      </div>
+                    </PopoverDropdown>
+                  </Popover>
+                )}
 
                 {icons.map((icon) => {
                   return (

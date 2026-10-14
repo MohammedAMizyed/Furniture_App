@@ -18,7 +18,7 @@ export default function LandingPages() {
       />
       <div className=" absolute top-1/2 left-1/2 -translate-1/2">
         <Image className=" m-auto" src={logo} alt="" />
-        <h1 className=" text-center  text-[25px] sm:text-[48px] font-medium ">
+        <h1 className=" text-center font-bold  text-[25px] sm:text-[48px]  ">
           {location.slice(1, 2).toUpperCase() + location.slice(2)}{" "}
         </h1>
         <div className="flex justify-center items-center gap-1">

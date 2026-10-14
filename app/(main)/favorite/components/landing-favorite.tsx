@@ -59,6 +59,7 @@ export default function LandingFavorite() {
             Check Out
           </Button>
           <Button
+            disabled={!products.length}
             onClick={reset}
             className="bg-red-500! duration-300! hover:bg-red-300!  w-fit block! mx-auto! text-center!"
           >

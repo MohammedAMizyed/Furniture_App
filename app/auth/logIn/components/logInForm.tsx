@@ -9,6 +9,7 @@ import Link from "next/link"
 import { useLogIn } from "@/hooks/auth/useLogIn"
 import { notifications } from "@mantine/notifications"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/hooks/auth/useAuth"
 
 export default function LogInForm() {
   const formSchema = z.object({
@@ -23,6 +24,7 @@ export default function LogInForm() {
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   })
+  const { logout } = useAuth()
   const { isPending, mutate } = useLogIn()
   const router = useRouter()
   const onSubmit: SubmitHandler<formSchemaType> = (data) => {
@@ -39,6 +41,7 @@ export default function LogInForm() {
           })
           localStorage.setItem("accessToken", data.accessToken)
           localStorage.setItem("refreshToken", data.refreshToken)
+
           router.push("/")
         },
         onError: (err) => {

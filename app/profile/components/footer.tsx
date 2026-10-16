@@ -14,7 +14,6 @@ export default function Footer({ data }: Props) {
 
           <h1 className="font-bold text-white">Physical Traits</h1>
         </div>
-        <div></div>
       </div>
       <FooterCard
         label="Hair Style"

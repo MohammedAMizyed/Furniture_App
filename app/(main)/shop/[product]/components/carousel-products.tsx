@@ -2,10 +2,12 @@
 
 import ProductCard from "@/app/components/layout/productCard"
 import { productsServices } from "@/services/products"
-import { Carousel, CarouselSlide } from "@mantine/carousel"
 import { useQuery } from "@tanstack/react-query"
 import "@mantine/carousel/styles.css"
-import { error } from "node:console"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Navigation } from "swiper/modules"
+import "swiper/css"
+import "swiper/css/navigation" // ← ضيفها
 
 export default function CarouselProducts() {
   const {
@@ -28,9 +30,11 @@ export default function CarouselProducts() {
     )
   }
   if (isLoading) {
-    ;<div className="animate-pulse text-3xl font-bold text-center my-10">
-      Loading...
-    </div>
+    return (
+      <div className="animate-pulse text-3xl font-bold text-center my-10">
+        Loading...
+      </div>
+    )
   }
   return (
     <>
@@ -43,19 +47,24 @@ export default function CarouselProducts() {
           <h2 className="text-center text-[36px] font-black mb-8">
             Related Products
           </h2>
-          <Carousel
-            withIndicators
-            height={350}
-            slideSize={{ md: "33.333333%" }}
-            slideGap={{ md: "md" }}
-            emblaOptions={{ loop: true, align: "start" }}
+
+          <Swiper
+            modules={[Navigation]}
+            navigation
+            spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 3 },
+            }}
           >
-            {products?.map((item) => (
-              <CarouselSlide key={item.id}>
+            {products?.map((item, index) => (
+              <SwiperSlide key={index}>
                 <ProductCard product={item} />
-              </CarouselSlide>
+              </SwiperSlide>
             ))}
-          </Carousel>
+          </Swiper>
         </div>
       )}
     </>

@@ -75,9 +75,9 @@ export default function InformationProduct({ product }: Props) {
           transitionTimingFunction="linear"
         >
           <Box>
-            {product.reviews.map((item) => {
+            {product.reviews.map((item, index) => {
               return (
-                <div key={item.reviewerEmail}>
+                <div key={index}>
                   <div className="bg-[#F9F1E7] p-5 rounded-2xl m-2">
                     <div className="mb-2">
                       <h1 className="text-2xl font-black ">

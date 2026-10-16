@@ -10,7 +10,7 @@ export default function Register() {
     <div className="h-screen overflow-hidden bg-[#F9F8F6] flex items-center justify-center">
       <div className="container mx-auto px-5">
         <div className="max-w-[1000px] mx-auto">
-          <div className="relative shadow-xl rounded-2xl overflow-hidden flex items-stretch">
+          <div className="relative shadow-xl rounded-2xl overflow-hidden flex items-stretch flex-col  sm:flex-row">
             <div className="absolute top-2 left-2 ">
               <Button
                 variant="light"
@@ -29,7 +29,7 @@ export default function Register() {
               <RegisterForm />
             </div>
 
-            <div className="basis-1/2 relative">
+            <div className="basis-1/2 relative min-h-[110px] sm:min-h-[0px]">
               <Image src={bgImg} alt="Login" fill className="object-cover" />
             </div>
           </div>

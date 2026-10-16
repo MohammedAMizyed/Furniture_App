@@ -52,15 +52,15 @@ export default function ProductDetails({ product, isLoading }: Props) {
         }
       />
       <div className="container">
-        <div className="flex justify-center  gap-20 border-b-1 my-2 border-[#9F9F9F] py-10 ">
+        <div className="flex sm:flex-row flex-col justify-center  gap-20 border-b-1 my-2 border-[#9F9F9F] py-10 ">
           <div className="flex-1/3">
             {isLoading ? (
               <div className="flex justify-center items-center  h-full animate-pulse text-3xl font-bold">
                 Loading...
               </div>
             ) : (
-              <div className="flex  gap-5">
-                <div className="flex gap-5 flex-col">
+              <div className="flex sm:flex-row  flex-col-reverse gap-5">
+                <div className="flex gap-5 flex-row sm:flex-col">
                   {data?.images.map((item, index) => (
                     <Image
                       key={index}

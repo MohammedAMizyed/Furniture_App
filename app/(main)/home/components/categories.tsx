@@ -3,6 +3,7 @@ import Image from "next/image"
 import furnitureImg from "../../../../public/bedroom.svg"
 import kitchenImg from "../../../../public/dining.svg"
 import decorationImg from "../../../../public/living.svg"
+import CategoriesSwiper from "./categories-swiper"
 export default async function Categories() {
   const categoriesImages: Record<string, typeof furnitureImg> = {
     furniture: furnitureImg,
@@ -19,7 +20,7 @@ export default async function Categories() {
           Lorem ipsum dolor sit amet , consectetur adipiscing elit.
         </h2>
       </div>
-      <div className="flex flex-wrap justify-center items-center gap-5">
+      <div className="hidden lg:flex flex-wrap justify-center items-center gap-5">
         {categoriesData?.map((item, index) => {
           return (
             <div
@@ -37,6 +38,9 @@ export default async function Categories() {
             </div>
           )
         })}
+      </div>
+      <div className="block lg:hidden">
+        <CategoriesSwiper categoriesData={categoriesData} />
       </div>
     </div>
   )

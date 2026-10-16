@@ -15,8 +15,15 @@ export function useAuth() {
   const logout = () => {
     localStorage.removeItem("accessToken")
     localStorage.removeItem("refreshToken")
+
     setIsLoggedIn(false)
   }
 
   return { isLoggedIn, isLoading, logout }
+}
+
+export const isTokenExpired = () => {
+  const expiry = localStorage.getItem("tokenExpiry")
+  if (!expiry) return true
+  return Date.now() >= Number(expiry)
 }

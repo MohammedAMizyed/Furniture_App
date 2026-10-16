@@ -68,12 +68,7 @@ export default function ProductCard({ product }: Props) {
           </div>
           <div className="text-white flex justify-center items-center gap-5">
             <Link href={`/shop/${product.id}`}>
-              <div
-                onClick={() => {
-                  handleAddProductToFav(product)
-                }}
-                className="cursor-pointer flex gap-1 items-center justify-center"
-              >
+              <div className="cursor-pointer flex gap-1 items-center justify-center">
                 <CiShare2 />
                 Link
               </div>
@@ -108,7 +103,7 @@ export default function ProductCard({ product }: Props) {
       </div>
       <div className="p-3">
         <ScrollArea
-          className="my-2! h-[30px]!"
+          className="my-2! h-[48px]! sm:h-[30px]!"
           type="auto"
           scrollHideDelay={1500}
         >
@@ -134,22 +129,29 @@ export default function ProductCard({ product }: Props) {
             >
               Add To Cart
             </Button>
-            <Link href={`/shop/${product.id}`}>
-              <Button
-                variant="white"
-                c={"black"}
-                className="bg-[#b88f2f58282]!"
-              >
-                <div className=" flex gap-1 items-center justify-center">
-                  <CiShare2 size={18} />
-                  Link
-                </div>
-              </Button>
-            </Link>
-            <Button variant="white" c={"black"}>
+            <Button
+              component={Link}
+              href={`/shop/${product.id}`}
+              variant="white"
+              c={"black"}
+              className="bg-[#b88f2f58282]!"
+            >
+              <div className=" flex gap-1 items-center justify-center">
+                <CiShare2 size={18} />
+                Link
+              </div>
+            </Button>
+            <Button
+              onClick={() => {
+                handleAddProductToFav(product)
+              }}
+              variant="white"
+              c={"black"}
+            >
               {" "}
               <div className="cursor-pointer flex gap-1 items-center justify-center">
                 <GiLoveHowl />
+                Like
               </div>
             </Button>
           </div>

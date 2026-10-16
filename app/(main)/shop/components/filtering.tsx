@@ -22,8 +22,11 @@ export default function Filtering() {
   }, [search])
 
   useEffect(() => {
-    window.scrollTo({ top: 400, behavior: "smooth" })
+    window.scrollTo({ top: 250, behavior: "smooth" })
   }, [page])
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
 
   return (
     <div>

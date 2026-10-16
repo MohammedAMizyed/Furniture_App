@@ -8,8 +8,8 @@ export default function LandingHomePage() {
     <div>
       <div className="relative   h-[calc(100vh-80px)]">
         <Image className="h-full w-full object-cover" src={landingBg} alt="" />
-        <div className=" w-[200px] h-[250px]  right-2 sm:h-140 sm:w-80 lg:h-[450px] lg:w-160 top-[50%] sm:-translate-y-1/2 lg:right-30  absolute rounded-xl p-10 bg-[#FFF3E3]">
-          <h3 className="sm:text-[16px] font-semibold">New Arrival</h3>
+        <div className=" w-[200px]   right-2 sm:h-140 sm:w-80 lg:h-[450px] lg:w-160 top-[50%] sm:-translate-y-1/2 lg:right-30  absolute rounded-xl p-4 sm:p-10 bg-[#FFF3E3]">
+          <h3 className="text-[20px]  font-semibold">New Arrival</h3>
           <h2 className="sm:text-[52px] font-bold text-[#B88E2F]">
             Discover Our New Collection
           </h2>

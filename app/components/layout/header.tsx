@@ -39,7 +39,7 @@ export default function Header() {
     { id: 2, srcImg: loveIcon, title: "love", path: "favorite" },
     { id: 3, srcImg: cartIcon, title: "cart", path: "cart" },
   ]
-  const { isLoggedIn, isLoading, logout } = useAuth()
+  const { isLoggedIn, logout } = useAuth()
   return (
     <div className="">
       <div className="h-[80px] flex justify-between items-center gap-1">
@@ -102,7 +102,7 @@ export default function Header() {
                 </PopoverTarget>
                 <PopoverDropdown>
                   <div className="flex flex-col justify-start items-start gap-2">
-                    <Link className="w-full!" href={`/auth/logIn`}>
+                    <Link className="w-full!" href={`/auth/login`}>
                       <Button
                         className=" flex! w-full! justify-center!"
                         color="#B88E2F"
@@ -200,7 +200,7 @@ export default function Header() {
                   </PopoverTarget>
                   <PopoverDropdown>
                     <div className="flex flex-col justify-start items-start gap-2">
-                      <Link className="w-full!" href={`/auth/logIn`}>
+                      <Link className="w-full!" href={`/auth/login`}>
                         <Button
                           className=" flex! w-full! justify-center!"
                           color="#B88E2F"
@@ -279,7 +279,7 @@ export default function Header() {
                     </PopoverTarget>
                     <PopoverDropdown>
                       <div className="flex flex-col justify-start items-start gap-2">
-                        <Link className="w-full!" href={`/auth/logIn`}>
+                        <Link className="w-full!" href={`/auth/login`}>
                           <Button
                             className=" flex! w-full! justify-center!"
                             color="#B88E2F"

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import bgImg from "../../../public/loginBg.png"
-import LogInForm from "./components/logInForm"
+import LogInForm from "./components/login-form"
 import { Button } from "@mantine/core"
 import { FaHome } from "react-icons/fa"
 import Link from "next/link"

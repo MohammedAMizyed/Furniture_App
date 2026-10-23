@@ -33,7 +33,7 @@ const useCartStore = create<CartState>()(
       reset: () => set({ products: [] }),
     }),
     {
-      name: "cart-storage",
+      name: "cart",
     },
   ),
 )

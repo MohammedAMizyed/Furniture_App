@@ -1,29 +1,35 @@
-// hooks/useAuth.ts
 "use client"
+
 import { useEffect, useState } from "react"
+import { authServices } from "@/services/auth"
 
 export function useAuth() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsLoggedIn(!!localStorage.getItem("accessToken"))
-    setIsLoading(false)
+    authServices
+      .me()
+      .then(() => {
+        setIsLoggedIn(true)
+      })
+      .catch(() => {
+        setIsLoggedIn(false)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }, [])
 
-  const logout = () => {
-    localStorage.removeItem("accessToken")
-    localStorage.removeItem("refreshToken")
-
-    setIsLoggedIn(false)
+  const logout = async () => {
+    try {
+      await authServices.logout()
+      setIsLoggedIn(false)
+      window.location.href = "/auth/login"
+    } catch (error) {
+      console.error("Logout failed", error)
+    }
   }
 
   return { isLoggedIn, isLoading, logout }
-}
-
-export const isTokenExpired = () => {
-  const expiry = localStorage.getItem("tokenExpiry")
-  if (!expiry) return true
-  return Date.now() >= Number(expiry)
 }

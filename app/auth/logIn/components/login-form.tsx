@@ -9,7 +9,6 @@ import Link from "next/link"
 import { useLogIn } from "@/hooks/auth/useLogIn"
 import { notifications } from "@mantine/notifications"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/hooks/auth/useAuth"
 
 export default function LogInForm() {
   const formSchema = z.object({
@@ -24,14 +23,13 @@ export default function LogInForm() {
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   })
-  const { logout } = useAuth()
   const { isPending, mutate } = useLogIn()
   const router = useRouter()
   const onSubmit: SubmitHandler<formSchemaType> = (data) => {
     mutate(
       { password: data.password, username: data.username, expiresInMins: 60 },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           notifications.show({
             title: "The Log In Is Successfully",
             message: "",
@@ -39,10 +37,8 @@ export default function LogInForm() {
             priority: 10,
             position: "top-center",
           })
-          localStorage.setItem("accessToken", data.accessToken)
-          localStorage.setItem("refreshToken", data.refreshToken)
-
-          router.push("/")
+          window.location.href = "/"
+          // router.push("/")
         },
         onError: (err) => {
           notifications.show({
